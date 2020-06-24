@@ -1,11 +1,31 @@
-# Core <!--Title-->
+Plugin Name: Core
+Description: Makes it always daytime, makes it always sunny and never rain, disable mob spawning. store command, website command, discord command, teamspeak command.
+Commands: /discord /store /website /teamspeak (also /ts)
+Features: Basically same as desc
+Minecraft Version: 1.7.10 - 1.8.9
 
-<div align="center">
-  [![Discord][discord]][discord-url]
-</div>
+config.yml:
+```
+always_day: true
+no_weather: true
+disable_mob_spawning: true
+discord_command: true
+store_command: true
+website_command: true
+teamspeak_command: true
+```
 
-<p align="center">Multipurpose plugin.</p> <!--Description-->
+messages.yml
+```
+discord:
+- "&d&ndiscord.zorapvp.net"
 
-<!-- BADGES -->
-[discord]: https://img.shields.io/discord/717790645900673084.svg
-[discord-url]: https://discord.gg/4afedcG <!--Discord-->
+store:
+- "&d&nstore.zorapvp.net"
+
+website:
+- "&d&nzorapvp.net"
+
+teamspeak:
+- "&d&nts.zorapvp.net"
+```
