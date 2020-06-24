@@ -1,0 +1,13 @@
+name: Core
+version: "0.1"
+main: com.github.valkyrienyanko.core.Core
+commands:
+  discord:
+    description: Discord link
+  store:
+    description: Store link
+  teamspeak:
+    description: Teamspeak link
+    aliases: [ts]
+  website:
+    description: Website link
