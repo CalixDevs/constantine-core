@@ -10,6 +10,11 @@ public class CmdHelp implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (command.getName().equalsIgnoreCase("help")) {
+            if (!Core.mainConfig.getBoolean("help_command")) {
+                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', Core.messagesConfig.getString("command_disabled")));
+                return true;
+            }
+
             for (String line : Core.messagesConfig.getStringList("help"))
                 commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', line));
 

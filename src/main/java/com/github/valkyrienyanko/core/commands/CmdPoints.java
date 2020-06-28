@@ -10,6 +10,11 @@ public class CmdPoints implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (command.getName().equalsIgnoreCase("points")) {
+            if (!Core.mainConfig.getBoolean("points_command")) {
+                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', Core.messagesConfig.getString("command_disabled")));
+                return true;
+            }
+
             for (String line : Core.messagesConfig.getStringList("points"))
                 commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', line));
 

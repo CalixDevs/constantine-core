@@ -10,6 +10,11 @@ public class CmdStore implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (command.getName().equalsIgnoreCase("store")) {
+            if (!Core.mainConfig.getBoolean("store_command")) {
+                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', Core.messagesConfig.getString("command_disabled")));
+                return true;
+            }
+
             commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', Core.messagesConfig.getString("store")));
             return true;
         }

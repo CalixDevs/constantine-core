@@ -58,6 +58,7 @@ public class Core extends JavaPlugin {
         defaultSet(messagesConfig, "store", "&d&nstore.zorapvp.net");
         defaultSet(messagesConfig, "website", "&d&nzorapvp.net");
         defaultSet(messagesConfig, "teamspeak", "&d&nts.zorapvp.net");
+        defaultSet(messagesConfig, "command_disabled", "&cThis command is currently disabled!");
 
         List<String> points = new ArrayList<>();
         points.add("&5&m------------------------------------");
@@ -117,23 +118,12 @@ public class Core extends JavaPlugin {
     }
 
     private void initCommands() {
-        if (mainConfig.getBoolean("discord_command"))
-            getCommand("discord").setExecutor(new CmdDiscord());
-
-        if (mainConfig.getBoolean("discord_command"))
-            getCommand("store").setExecutor(new CmdStore());
-
-        if (mainConfig.getBoolean("discord_command"))
-            getCommand("teamspeak").setExecutor(new CmdTeamspeak());
-
-        if (mainConfig.getBoolean("discord_command"))
-            getCommand("website").setExecutor(new CmdWebsite());
-
-        if (mainConfig.getBoolean("help_command"))
-            getCommand("help").setExecutor(new CmdHelp());
-
-        if (mainConfig.getBoolean("points_command"))
-            getCommand("points").setExecutor(new CmdPoints());
+        getCommand("discord").setExecutor(new CmdDiscord());
+        getCommand("store").setExecutor(new CmdStore());
+        getCommand("teamspeak").setExecutor(new CmdTeamspeak());
+        getCommand("website").setExecutor(new CmdWebsite());
+        getCommand("help").setExecutor(new CmdHelp());
+        getCommand("points").setExecutor(new CmdPoints());
     }
 
     private void broadcastMessages() {
