@@ -11,3 +11,8 @@ commands:
     aliases: [ts]
   website:
     description: Website link
+  help:
+    description: Show help
+  points:
+    descriotion: Show points
+    aliases: [pts, pt]

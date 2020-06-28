@@ -1,8 +1,0 @@
-com\github\valkyrienyanko\core\configs\ConfigManager.class
-com\github\valkyrienyanko\core\commands\CmdDiscord.class
-com\github\valkyrienyanko\core\Core$1.class
-com\github\valkyrienyanko\core\events\Events.class
-com\github\valkyrienyanko\core\commands\CmdStore.class
-com\github\valkyrienyanko\core\commands\CmdWebsite.class
-com\github\valkyrienyanko\core\Core.class
-com\github\valkyrienyanko\core\commands\CmdTeamspeak.class
