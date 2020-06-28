@@ -6,13 +6,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import java.util.List;
-
 public class CmdHelp implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (command.getName().equalsIgnoreCase("help")) {
-            for (String line : (List<String>) Core.messagesConfig.getList("help"))
+            for (String line : Core.messagesConfig.getStringList("help"))
                 commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', line));
 
             return true;

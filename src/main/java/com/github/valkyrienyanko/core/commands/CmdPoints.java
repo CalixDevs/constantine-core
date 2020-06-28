@@ -6,13 +6,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import java.util.List;
-
 public class CmdPoints implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (command.getName().equalsIgnoreCase("points")) {
-            for (String line : (List<String>) Core.messagesConfig.getList("points"))
+            for (String line : Core.messagesConfig.getStringList("points"))
                 commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', line));
 
             return true;
