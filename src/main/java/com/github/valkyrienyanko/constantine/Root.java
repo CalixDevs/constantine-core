@@ -1,8 +1,8 @@
-package com.github.valkyrienyanko.core;
+package com.github.valkyrienyanko.constantine;
 
-import com.github.valkyrienyanko.core.commands.*;
-import com.github.valkyrienyanko.core.configs.ConfigManager;
-import com.github.valkyrienyanko.core.events.Events;
+import com.github.valkyrienyanko.constantine.commands.*;
+import com.github.valkyrienyanko.constantine.configs.ConfigManager;
+import com.github.valkyrienyanko.constantine.events.Events;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -17,7 +17,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Core extends JavaPlugin {
+public class Root extends JavaPlugin {
     public static File pluginFolder;
 
     public static ConfigManager mainCM;
@@ -26,10 +26,16 @@ public class Core extends JavaPlugin {
     public static ConfigManager messagesCM;
     public static YamlConfiguration messagesConfig;
 
+    public static boolean broadcast = false;
+    public static int broadcastId;
     public static int broadcastCounter = 0;
+
+    public static Root INSTANCE;
 
     @Override
     public void onEnable() {
+        INSTANCE = this;
+
         pluginFolder = getDataFolder();
 
         initConfigs();
@@ -58,7 +64,11 @@ public class Core extends JavaPlugin {
         defaultSet(messagesConfig, "store", "&d&nstore.zorapvp.net");
         defaultSet(messagesConfig, "website", "&d&nzorapvp.net");
         defaultSet(messagesConfig, "teamspeak", "&d&nts.zorapvp.net");
+
         defaultSet(messagesConfig, "command_disabled", "&cThis command is currently disabled!");
+        defaultSet(messagesConfig, "no_permission", "&cNo permission.");
+        defaultSet(messagesConfig, "reload_success", "&aRoot has successfully reloaded config.yml & messages.yml");
+        defaultSet(messagesConfig, "reload_fail", "&cAn error occured...");
 
         List<String> points = new ArrayList<>();
         points.add("&5&m------------------------------------");
@@ -109,6 +119,13 @@ public class Core extends JavaPlugin {
         defaultSet(mainConfig, "teamspeak_command", true);
         defaultSet(mainConfig, "points_command", true);
         defaultSet(mainConfig, "help_command", true);
+
+        List<String> disabled = new ArrayList<>();
+        disabled.add("ip");
+        disabled.add("pl");
+        disabled.add("add_more_commands_here");
+        defaultSet(mainConfig, "disabled_commands", disabled);
+
         mainCM.saveConfig();
     }
 
@@ -124,17 +141,20 @@ public class Core extends JavaPlugin {
         getCommand("website").setExecutor(new CmdWebsite());
         getCommand("help").setExecutor(new CmdHelp());
         getCommand("points").setExecutor(new CmdPoints());
+        getCommand("root").setExecutor(new CmdRoot());
     }
 
-    private void broadcastMessages() {
+    public void broadcastMessages() {
         if (!mainConfig.getBoolean("autobroadcast"))
             return;
+
+        broadcast = true;
 
         final boolean sound = mainConfig.getBoolean("autobroadcast_sound");
         final long interval = mainConfig.getLong("autobroadcast_interval");
         final int amount = mainConfig.getInt("autobroadcast_amount");
 
-        getServer().getScheduler().scheduleSyncRepeatingTask(this, () -> {
+        broadcastId = getServer().getScheduler().scheduleSyncRepeatingTask(this, () -> {
             List<String> message = getBroadcastMessage(broadcastCounter);
             getLogger().info("Sending broadcast #" + (broadcastCounter + 1) + " to " + Bukkit.matchPlayer("").size() + " players.");
 

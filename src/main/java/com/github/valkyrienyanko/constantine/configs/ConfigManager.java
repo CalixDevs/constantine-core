@@ -1,9 +1,9 @@
-package com.github.valkyrienyanko.core.configs;
+package com.github.valkyrienyanko.constantine.configs;
 
 import java.io.File;
 import java.io.IOException;
 
-import com.github.valkyrienyanko.core.Core;
+import com.github.valkyrienyanko.constantine.Root;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class ConfigManager {
@@ -11,7 +11,7 @@ public class ConfigManager {
     private YamlConfiguration config;
 
     public ConfigManager(String name) {
-        file = new File(Core.pluginFolder, name + ".yml");
+        file = new File(Root.pluginFolder, name + ".yml");
         config = YamlConfiguration.loadConfiguration(file);
     }
 

@@ -1,6 +1,6 @@
-name: Core
+name: Root
 version: "0.3.1"
-main: com.github.valkyrienyanko.core.Core
+main: com.github.valkyrienyanko.constantine.Root
 commands:
   discord:
     description: Discord link
@@ -16,3 +16,12 @@ commands:
   points:
     descriotion: Show points
     aliases: [pts, pt]
+  root:
+    description: Root plugin management
+
+permissions:
+  root.reload:
+    description: Allows the usage of /root reload
+    default: op
+
+load: STARTUP

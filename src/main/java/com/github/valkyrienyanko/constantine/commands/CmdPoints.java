@@ -1,6 +1,6 @@
-package com.github.valkyrienyanko.core.commands;
+package com.github.valkyrienyanko.constantine.commands;
 
-import com.github.valkyrienyanko.core.Core;
+import com.github.valkyrienyanko.constantine.Root;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,12 +10,12 @@ public class CmdPoints implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (command.getName().equalsIgnoreCase("points")) {
-            if (!Core.mainConfig.getBoolean("points_command")) {
-                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', Core.messagesConfig.getString("command_disabled")));
+            if (!Root.mainConfig.getBoolean("points_command")) {
+                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', Root.messagesConfig.getString("command_disabled")));
                 return true;
             }
 
-            for (String line : Core.messagesConfig.getStringList("points"))
+            for (String line : Root.messagesConfig.getStringList("points"))
                 commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', line));
 
             return true;
